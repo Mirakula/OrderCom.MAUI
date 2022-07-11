@@ -11,10 +11,10 @@
     </TabBar>
 
     <TabBar Route="Main">
-        <ShellContent Title="Narudzbe" ContentTemplate="{DataTemplate local:NarudzbaPage}"/>
-        <ShellContent Title="Kupci" ContentTemplate="{DataTemplate local:KupacPage}"/>
-        <ShellContent Title="Proizvodi" ContentTemplate="{DataTemplate local:ProizvodPage}"/>
-        <ShellContent Title="Knjižna odobrenja" ContentTemplate="{DataTemplate local:KnjiznaObavijestPage}"/>
+        <ShellContent Icon="narudzbenica_light.png" Title="Narudzbe" ContentTemplate="{DataTemplate local:NarudzbaPage}"/>
+        <ShellContent Icon="kupac_light.png" Title="Kupci" ContentTemplate="{DataTemplate local:KupacPage}"/>
+        <ShellContent Icon="proizvod_light.png" Title="Proizvodi" ContentTemplate="{DataTemplate local:ProizvodPage}"/>
+        <ShellContent Icon="knjizna_obavijest.png" Title="Knjižna odobrenja" ContentTemplate="{DataTemplate local:KnjiznaObavijestPage}"/>
     </TabBar>
 
 </Shell>

@@ -27,8 +27,8 @@ namespace OrderCom.Models
         public string in_valpla { get; set; }
         [Column("in_rokpla")]
         public double in_rokpla { get; set; }
-        [Column("in_tipra")]
-        public double in_tipar { get; set; }
+        [Column("in_tiprac")]
+        public double in_tiprac { get; set; }
         [Column("in_tipnar")]
         public double in_tipnar { get; set; }
         [Column("in_demdin")]

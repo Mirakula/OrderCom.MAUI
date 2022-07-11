@@ -2,14 +2,38 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OrderCom.Views.NarudzbaPage"
+             xmlns:model="clr-namespace:OrderCom.Models"
              Title="NarudzbaPage">
     <Grid ColumnDefinitions="*,*,*"
-          ColumnSpacing="5"
+          ColumnSpacing="0"
           RowDefinitions="*,Auto">
         <CollectionView BackgroundColor="Transparent"
                         Grid.ColumnSpan="3"
-                        ItemsSource="{Binding Narudzbenice}">
-            
+                        ItemsSource="{Binding Narudzbenice}"
+                        SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:indkdat">
+                    <Grid Padding="3">
+                        <Frame HeightRequest="50"
+                               Padding="0">
+                            <Grid ColumnDefinitions="125,*">
+                                <Image Source="narudzbenica_light.png"
+                                       Aspect="Fill"
+                                       WidthRequest="48"
+                                       HeightRequest="48"/>
+                                <VerticalStackLayout Grid.Column="1"
+                                                     Padding="0"
+                                                     VerticalOptions="Center"
+                                                     HorizontalOptions="Start">
+                                    <Label Text="{Binding in_brjdok}" FontSize="Small"/>
+                                    <Label Text="{Binding in_datdok}" FontSize="Micro"/>
+                                    <Label Text="{Binding in_datrea}" FontSize="Micro"/>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
         </CollectionView>
         
     </Grid>

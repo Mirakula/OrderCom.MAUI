@@ -15,7 +15,7 @@
 		<ApplicationTitle>OrderCom</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.ordercom</ApplicationId>
+		<ApplicationId>com.comp2000.ordercom</ApplicationId>
 		<ApplicationIdGuid>7C39C5AC-2BFB-4764-A613-F2F7201026D1</ApplicationIdGuid>
 
 		<!-- Versions -->
@@ -50,6 +50,11 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\AppIcon\COMP5.png" />
+	  <None Remove="Resources\AppIcon\narudzbenica_light.png" />
+	  <None Remove="Resources\Images\knjizna_obavijest.png" />
+	  <None Remove="Resources\Images\kupac_light.png" />
+	  <None Remove="Resources\Images\narudzbenica_light.png" />
+	  <None Remove="Resources\Images\proizvod_light.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -60,6 +65,7 @@
 
 	<ItemGroup>
 	  <Resource Include="Resources\AppIcon\COMP5.png" />
+	  <Resource Include="Resources\AppIcon\narudzbenica_light.png" />
 	</ItemGroup>
 
 	<ItemGroup>
