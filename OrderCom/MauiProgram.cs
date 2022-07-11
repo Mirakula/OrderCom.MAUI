@@ -28,6 +28,7 @@ public static class MauiProgram
 	static void RegisterServices(in IServiceCollection services)
 	{
         services.AddSingleton<ILoginService, LoginService>();
+		services.AddSingleton<IDatabaseService, DatabaseService>();
     }
 
     static void RegisterPages(in IServiceCollection services)
