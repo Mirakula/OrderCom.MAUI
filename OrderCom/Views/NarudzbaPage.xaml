@@ -3,10 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OrderCom.Views.NarudzbaPage"
              Title="NarudzbaPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="{Binding Test}"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <Grid ColumnDefinitions="*,*,*"
+          ColumnSpacing="5"
+          RowDefinitions="*,Auto">
+        <CollectionView BackgroundColor="Transparent"
+                        Grid.ColumnSpan="3"
+                        ItemsSource="{Binding Narudzbenice}">
+            
+        </CollectionView>
+        
+    </Grid>
 </ContentPage>
