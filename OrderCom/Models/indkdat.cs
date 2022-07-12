@@ -51,5 +51,7 @@ namespace OrderCom.Models
         public string in_siflok { get; set; }
         [Column("in_narkup")]
         public string in_narkup { get; set; }
+        [Ignore]
+        public string in_poszak { get; set; }
     }
 }

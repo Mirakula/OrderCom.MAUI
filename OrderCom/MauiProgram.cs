@@ -39,6 +39,7 @@ public static class MauiProgram
 		services.AddSingleton<KupacPage>();
 		services.AddSingleton<ProizvodPage>();
 		services.AddSingleton<NarudzbaPage>();
+		services.AddTransient<NarudzbaDetailPage>();
     }
 
     static void RegisterViewModels(in IServiceCollection services)
@@ -48,5 +49,6 @@ public static class MauiProgram
 		services.AddSingleton<KupacViewModel>();
 		services.AddSingleton<NarudzbaViewModel>();
 		services.AddSingleton<KnjiznaObavijestViewModel>();
-    }
+		services.AddTransient<NarudzbaDetailViewModel>();
+	}
 }

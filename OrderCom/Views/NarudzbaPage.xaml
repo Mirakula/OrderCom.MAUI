@@ -3,24 +3,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OrderCom.Views.NarudzbaPage"
              xmlns:model="clr-namespace:OrderCom.Models"
+             xmlns:viewModel="clr-namespace:OrderCom.ViewModels"
              Title="NarudzbaPage">
-    <Grid ColumnDefinitions="*,*,*"
+    <Grid ColumnDefinitions="*, *, *"
           ColumnSpacing="0"
-          RowDefinitions="*,Auto">
+          RowDefinitions="*, Auto">
         <CollectionView BackgroundColor="Transparent"
                         Grid.ColumnSpan="3"
                         ItemsSource="{Binding Narudzbenice}"
                         SelectionMode="None">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:indkdat">
-                    <Grid Padding="3">
+                    <Grid Padding="4">
                         <Frame HeightRequest="50"
                                Padding="0">
-                            <Grid ColumnDefinitions="125,*">
-                                <Image Source="narudzbenica_light.png"
-                                       Aspect="Fill"
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="{Binding .}"
+                                                      Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:NarudzbaViewModel}}, Path=GoToDetailsCommand}"/>
+                            </Frame.GestureRecognizers>
+                            <Grid ColumnDefinitions="75,*,*,*">
+                                <Image Grid.Column="0"
+                                       Source="narudzbenica_light.png"
+                                       Aspect="AspectFill"
                                        WidthRequest="48"
-                                       HeightRequest="48"/>
+                                       HeightRequest="48"
+                                       HorizontalOptions="Start"
+                                       Margin="10,0,0,0"/>
                                 <VerticalStackLayout Grid.Column="1"
                                                      Padding="0"
                                                      VerticalOptions="Center"
@@ -29,12 +37,36 @@
                                     <Label Text="{Binding in_datdok}" FontSize="Micro"/>
                                     <Label Text="{Binding in_datrea}" FontSize="Micro"/>
                                 </VerticalStackLayout>
+                                <VerticalStackLayout Grid.Column="2"
+                                                     Padding="0"
+                                                     VerticalOptions="Center">
+                                    <Image Source="{Binding in_poszak}"
+                                           Aspect="AspectFill"
+                                           WidthRequest="32"
+                                           HeightRequest="32"
+                                           HorizontalOptions="Center"/>
+                                </VerticalStackLayout>
+                                <HorizontalStackLayout Grid.Column="3" 
+                                                       HorizontalOptions="Center"
+                                                       VerticalOptions="Center"
+                                                       Spacing="1">
+                                    <Label Text="{Binding in_vriskl}"/>
+                                    <Label Text="KM"/>
+                                </HorizontalStackLayout>
                             </Grid>
                         </Frame>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        
+        <HorizontalStackLayout Grid.Row="1" 
+                               Grid.ColumnSpan="3"
+                               HorizontalOptions="CenterAndExpand"
+                               Spacing="2"
+                               Padding="1">
+            <Button Text="Nova" WidthRequest="120" Command="{Binding DodajNaruzbenicuCommand}"/>
+            <Button Text="Zaključene" WidthRequest="120"/>
+            <Button Text="Poslane" WidthRequest="120"/>
+        </HorizontalStackLayout>
     </Grid>
 </ContentPage>

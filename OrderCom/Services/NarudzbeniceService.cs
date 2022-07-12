@@ -1,6 +1,5 @@
 ﻿using OrderCom.Contracts;
 using OrderCom.Models;
-using System.Globalization;
 
 namespace OrderCom.Services
 {
@@ -29,9 +28,9 @@ namespace OrderCom.Services
                 in_tiprac = 0,
                 in_tipnar = 49,
                 in_demdin = 1.000000,
-                in_vriskl = 165.0,
+                in_vriskl = 74.20,
                 in_indskl = 0,
-                in_staslg = "1",
+                in_staslg = "3",
                 in_datdok = DateTime.Parse("2017-03-09 15:27:25.000"),
                 in_usenam = "E2",
                 in_radmod = "RUR",
@@ -41,7 +40,7 @@ namespace OrderCom.Services
             });
             Narudzbenice.Add(new indkdat
             {
-                in_brjdok = "309E2001",
+                in_brjdok = "309E2002",
                 in_brjori = " ",
                 in_brjotp = " ",
                 in_posmat = "123456",
@@ -55,9 +54,9 @@ namespace OrderCom.Services
                 in_tiprac = 0,
                 in_tipnar = 49,
                 in_demdin = 1.000000,
-                in_vriskl = 165.0,
+                in_vriskl = 165.74,
                 in_indskl = 0,
-                in_staslg = "1",
+                in_staslg = "2",
                 in_datdok = DateTime.Parse("2017-03-09 15:27:25.000"),
                 in_usenam = "E2",
                 in_radmod = "RUR",
@@ -67,7 +66,7 @@ namespace OrderCom.Services
             });
             Narudzbenice.Add(new indkdat
             {
-                in_brjdok = "309E2001",
+                in_brjdok = "309E2003",
                 in_brjori = " ",
                 in_brjotp = " ",
                 in_posmat = "123456",
@@ -81,7 +80,7 @@ namespace OrderCom.Services
                 in_tiprac = 0,
                 in_tipnar = 49,
                 in_demdin = 1.000000,
-                in_vriskl = 165.0,
+                in_vriskl = 275.0,
                 in_indskl = 0,
                 in_staslg = "1",
                 in_datdok = DateTime.Parse("2017-03-09 15:27:25.000"),
@@ -94,7 +93,22 @@ namespace OrderCom.Services
 
             await Task.Delay(3000);
 
+            foreach (var narudzba in Narudzbenice)
+            {
+                if (narudzba.in_staslg == "1")
+                    narudzba.in_poszak = "nezakljucena_light.png";
+                else if (narudzba.in_staslg == "2")
+                    narudzba.in_poszak = "zakljucena_light.png";
+                else
+                    narudzba.in_poszak = "poslana_light.png";
+            }
+
             return Narudzbenice;
+        }
+
+        public Task<bool> DodajNarudzbenicu(indkdat indkdat)
+        {
+            throw new NotImplementedException();
         }
     }
 }

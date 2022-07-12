@@ -1,6 +1,7 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.Input;
 using OrderCom.Contracts;
 using OrderCom.Models;
+using OrderCom.Views;
 using System.Collections.ObjectModel;
 
 namespace OrderCom.ViewModels
@@ -16,18 +17,32 @@ namespace OrderCom.ViewModels
             // TODO Dobaviti narudzbenice iz baze
             _narudzbeniceService = narudzbeniceService;
 
-            var naruzbenice = Task.Run(async () => await _narudzbeniceService.DajSveNarudzbenice()).Result;
+            var narudzbenice = Task.Run(async () => await _narudzbeniceService.DajSveNarudzbenice()).Result;
 
-            foreach (var naruzbenica in naruzbenice)
+            foreach (var narudzbenica in narudzbenice)
             {
-                Narudzbenice.Add(naruzbenica);
+                Narudzbenice.Add(narudzbenica);
             }
         }
 
+        [ICommand]
+        async Task DodajNaruzbenicuAsync()
+        {
+            IsBusy = true;
+            await Task.Delay(2000);
+            Narudzbenice.Clear();
+        }
 
+        [ICommand]
+        async Task GoToDetailsAsync(indkdat indkdat)
+        {
+            if (indkdat is null)
+                return;
 
-        [ObservableProperty]
-        string test = "NAR viewModel";
-
+            await Shell.Current.GoToAsync($"{nameof(NarudzbaDetailPage)}", true, new Dictionary<string, object>
+            {
+                { "in_brjdok", indkdat }
+            });
+        }
     }
 }
