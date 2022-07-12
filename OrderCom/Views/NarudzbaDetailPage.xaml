@@ -2,11 +2,70 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OrderCom.Views.NarudzbaDetailPage"
-             Title="NarudzbaDetailPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Narudzba Detail Page"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             xmlns:viewModel="clr-namespace:OrderCom.ViewModels"
+             xmlns:model="clr-namespace:OrderCom.Models"
+             Title="Detalji narudzbe">
+
+    <ContentView>
+        <Grid ColumnDefinitions="*,*"
+              RowDefinitions="*,*,Auto"
+              Padding="5"
+              VerticalOptions="Start"
+              RowSpacing="20">
+            <Frame BackgroundColor="Transparent"
+                   Grid.Column="0"
+                   Grid.Row="0"
+                   Grid.ColumnSpan="2"
+                   HasShadow="True"
+                   HeightRequest="130"
+                   VerticalOptions="Start">
+                <Grid RowDefinitions="Auto,Auto,Auto" 
+                      VerticalOptions="Center"
+                      HorizontalOptions="Center">
+                    <HorizontalStackLayout HorizontalOptions="Center"
+                                           Grid.Row="0">
+                        <Label Text="Broj dokumenta: " FontSize="24"/>
+                        <Label Text="{Binding Indkdat.in_brjdok}" FontSize="24"/>
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout HorizontalOptions="Center"
+                                           Grid.Row="1">
+                        <Label Text="Skladište: " FontSize="24"/>
+                        <Label Text="{Binding Indkdat.in_posmat}" FontSize="24"/>
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout HorizontalOptions="Center"
+                                           Grid.Row="2">
+                        <Label Text="Datum: " FontSize="24"/>
+                        <Label Text="{Binding Indkdat.in_datrea, StringFormat='{0:dd.MM.yyyy}'}" FontSize="24"/>
+                    </HorizontalStackLayout>
+                </Grid>
+            </Frame>
+
+            <Frame BackgroundColor="Transparent"
+                   Grid.Column="0"
+                   Grid.Row="1"
+                   Grid.ColumnSpan="2"
+                   HasShadow="True"
+                   HeightRequest="130"
+                   VerticalOptions="Start">
+                <Grid RowDefinitions="Auto,Auto,Auto" 
+                      ColumnDefinitions="*, *">
+                    <HorizontalStackLayout>
+                        <HorizontalStackLayout HorizontalOptions="Start"
+                                           Grid.Column="0"
+                                           Grid.Row="0"
+                                           BackgroundColor="Red">
+                            <Label Text="Broj dokumenta: " FontSize="24"/>
+
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout HorizontalOptions="End"
+                                           Grid.Column="1"
+                                           Grid.Row="0">
+                            <Label Text="{Binding Indkdat.in_brjdok}" FontSize="24"
+                               BackgroundColor="Yellow"/>
+                        </HorizontalStackLayout>
+                    </HorizontalStackLayout>
+                </Grid>
+            </Frame>
+        </Grid>
+    </ContentView>
 </ContentPage>

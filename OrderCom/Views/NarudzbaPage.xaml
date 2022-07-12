@@ -4,6 +4,7 @@
              x:Class="OrderCom.Views.NarudzbaPage"
              xmlns:model="clr-namespace:OrderCom.Models"
              xmlns:viewModel="clr-namespace:OrderCom.ViewModels"
+             xmlns:viewContainers="clr-namespace:OrderCom.Views.ViewContainers"
              Title="NarudzbaPage">
     <Grid ColumnDefinitions="*, *, *"
           ColumnSpacing="0"
@@ -16,7 +17,8 @@
                 <DataTemplate x:DataType="model:indkdat">
                     <Grid Padding="4">
                         <Frame HeightRequest="50"
-                               Padding="0">
+                               Padding="0"
+                               HasShadow="True">
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer CommandParameter="{Binding .}"
                                                       Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:NarudzbaViewModel}}, Path=GoToDetailsCommand}"/>
@@ -51,10 +53,16 @@
                                                        VerticalOptions="Center"
                                                        Spacing="1">
                                     <Label Text="{Binding in_vriskl}"/>
-                                    <Label Text="KM"/>
+                                    <Label Text="{Binding in_valpla}"/>
                                 </HorizontalStackLayout>
+                               
                             </Grid>
                         </Frame>
+                        <SwipeView>
+                            <SwipeView.LeftItems>
+                                <SwipeItem Text="Delete" BackgroundColor="Red"/>
+                            </SwipeView.LeftItems>
+                        </SwipeView>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

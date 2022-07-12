@@ -10,5 +10,4 @@ public partial class NarudzbaPage : ContentPage
         Shell.SetNavBarIsVisible(this, false);
         BindingContext = viewModel;
 	}
-
 }

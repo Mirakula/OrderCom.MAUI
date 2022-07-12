@@ -3,16 +3,17 @@ using OrderCom.Contracts;
 using OrderCom.Models;
 using OrderCom.Views;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace OrderCom.ViewModels
 {
     public partial class NarudzbaViewModel : BaseViewModel
     {
-        private INarudzbeniceService _narudzbeniceService;
+        private INarudzbaService _narudzbeniceService;
         public ObservableCollection<indkdat> Narudzbenice { get; set; } = new();
 
 
-        public NarudzbaViewModel(INarudzbeniceService narudzbeniceService)
+        public NarudzbaViewModel(INarudzbaService narudzbeniceService)
         {
             // TODO Dobaviti narudzbenice iz baze
             _narudzbeniceService = narudzbeniceService;
@@ -34,6 +35,12 @@ namespace OrderCom.ViewModels
         }
 
         [ICommand]
+        async Task OnSwipeDeleteAsync(indkdat nakodat)
+        {
+            Debug.WriteLine("Swiped");
+        }
+
+        [ICommand]
         async Task GoToDetailsAsync(indkdat indkdat)
         {
             if (indkdat is null)
@@ -41,7 +48,7 @@ namespace OrderCom.ViewModels
 
             await Shell.Current.GoToAsync($"{nameof(NarudzbaDetailPage)}", true, new Dictionary<string, object>
             {
-                { "in_brjdok", indkdat }
+                { "Indkdat", indkdat }
             });
         }
     }

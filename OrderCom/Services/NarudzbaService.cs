@@ -3,13 +3,19 @@ using OrderCom.Models;
 
 namespace OrderCom.Services
 {
-    public class NarudzbeniceService : INarudzbeniceService
+    public class NarudzbaService : INarudzbaService
     {
         public List<indkdat> Narudzbenice;
-        public NarudzbeniceService()
+        public NarudzbaService()
         {
             Narudzbenice = new();
         }
+
+        public Task<List<instdat>> DajStavkeNarudzbe(string in_brjdok)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<List<indkdat>> DajSveNarudzbenice()
         {
             Narudzbenice.Add(new indkdat
