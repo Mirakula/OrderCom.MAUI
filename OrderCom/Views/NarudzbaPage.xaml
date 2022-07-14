@@ -4,7 +4,6 @@
              x:Class="OrderCom.Views.NarudzbaPage"
              xmlns:model="clr-namespace:OrderCom.Models"
              xmlns:viewModel="clr-namespace:OrderCom.ViewModels"
-             xmlns:viewContainers="clr-namespace:OrderCom.Views.ViewContainers"
              Title="NarudzbaPage">
     <Grid ColumnDefinitions="*, *, *"
           ColumnSpacing="0"
@@ -55,14 +54,9 @@
                                     <Label Text="{Binding in_vriskl}"/>
                                     <Label Text="{Binding in_valpla}"/>
                                 </HorizontalStackLayout>
-                               
+
                             </Grid>
                         </Frame>
-                        <SwipeView>
-                            <SwipeView.LeftItems>
-                                <SwipeItem Text="Delete" BackgroundColor="Red"/>
-                            </SwipeView.LeftItems>
-                        </SwipeView>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

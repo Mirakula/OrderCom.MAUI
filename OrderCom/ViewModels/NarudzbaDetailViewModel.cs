@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using OrderCom.Contracts;
 using OrderCom.Models;
+using System.ComponentModel;
 using System.Diagnostics;
 
 namespace OrderCom.ViewModels
@@ -13,8 +14,11 @@ namespace OrderCom.ViewModels
         public NarudzbaDetailViewModel(INarudzbaService narudzbaService)
         {
             _narudzbaService = narudzbaService;
-            //Instdat = Task.Run(async () => await _narudzbaService.DajStavkeNarudzbe(indkdat.in_brjdok)).Result;
-            Debug.WriteLine(Indkdat);
+        }
+
+        partial void OnIndkdatChanged(indkdat indkdat)
+        {
+            Instdat = _narudzbaService.DajStavkeNarudzbe(indkdat.in_brjdok);
         }
 
         [ObservableProperty]
@@ -22,5 +26,8 @@ namespace OrderCom.ViewModels
 
         [ObservableProperty]
         List<instdat> instdat;
+
+        [ObservableProperty]
+        namadat namadat;
     }
 }

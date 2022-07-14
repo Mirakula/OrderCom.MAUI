@@ -26,7 +26,7 @@ namespace OrderCom.ViewModels
             }
         }
 
-        [ICommand]
+        [RelayCommand]
         async Task DodajNaruzbenicuAsync()
         {
             IsBusy = true;
@@ -34,13 +34,13 @@ namespace OrderCom.ViewModels
             Narudzbenice.Clear();
         }
 
-        [ICommand]
+        [RelayCommand]
         async Task OnSwipeDeleteAsync(indkdat nakodat)
         {
             Debug.WriteLine("Swiped");
         }
 
-        [ICommand]
+        [RelayCommand]
         async Task GoToDetailsAsync(indkdat indkdat)
         {
             if (indkdat is null)

@@ -9,7 +9,7 @@ namespace OrderCom.ViewModels
         }
 
         [ObservableProperty]
-        [AlsoNotifyChangeFor(nameof(IsNotBusy))]
+        [NotifyPropertyChangedFor(nameof(IsNotBusy))]
         bool isBusy;
 
         [ObservableProperty]

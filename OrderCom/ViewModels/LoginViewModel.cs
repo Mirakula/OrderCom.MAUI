@@ -23,7 +23,7 @@ namespace OrderCom.ViewModels
         [ObservableProperty]
         string ca_imekrt;
 
-        [ICommand]
+        [RelayCommand]
         async Task LoginAsync()
         {
             IsBusy = true;
