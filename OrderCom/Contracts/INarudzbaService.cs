@@ -6,7 +6,7 @@ namespace OrderCom.Contracts
     {
         Task<List<indkdat>> DajSveNarudzbenice();
         List<instdat> DajStavkeNarudzbe(string in_brjdok);
-        Task<namadat> DajProizovd(int ea_sifmat);
+        Task<namadat> DajProizvod(int ea_sifmat);
         Task<bool> DodajNarudzbenicu(indkdat indkdat);
     }
 }

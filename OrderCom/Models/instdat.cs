@@ -29,5 +29,9 @@ namespace OrderCom.Models
         public string kn_siflok { get; set; }
         [Column("kn_rabkup")]
         public double kn_rabkup { get; set; }
+
+        [Ignore]
+        // Property koji drzi naziv robe
+        public string kn_nazrob { get; set; }
     }
 }

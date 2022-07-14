@@ -75,10 +75,18 @@
                         <Grid Padding="2"
                               VerticalOptions="Center">
                             <Frame HasShadow="True">
-                                <HorizontalStackLayout>
-                                    <Label Text="{Binding kn_sifmat}"/>
-                                    <Label Text="{Binding kn_sifmat}"/>
-                                </HorizontalStackLayout>
+                                <Grid ColumnDefinitions="75,*,*">
+                                    <Image Source="item_light.png"
+                                           Aspect="Fill"
+                                           Grid.Column="0"
+                                           WidthRequest="32"
+                                           HeightRequest="32"
+                                           HorizontalOptions="Start"/>
+                                    <HorizontalStackLayout Grid.Column="1"
+                                                           VerticalOptions="Center">
+                                        <Label Text="{Binding kn_sifmat}"/>
+                                    </HorizontalStackLayout>
+                                </Grid>
                             </Frame>
                         </Grid>
                     </DataTemplate>
@@ -90,7 +98,8 @@
                                Grid.ColumnSpan="2"
                                VerticalOptions="End"
                                HorizontalOptions="Center"
-                               Spacing="5">
+                               Spacing="5"
+                               Margin="0,5,0,0">
             <Button Text="Izbriši narudžbenicu" BackgroundColor="Red" TextColor="White"/>
             <Button Text="Uredi narudžbenicu"/>
         </HorizontalStackLayout>

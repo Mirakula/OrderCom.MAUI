@@ -27,7 +27,7 @@ namespace OrderCom.ViewModels
         }
 
         [RelayCommand]
-        async Task DodajNaruzbenicuAsync()
+        async Task DodajNaruzbuAsync()
         {
             IsBusy = true;
             await Task.Delay(2000);

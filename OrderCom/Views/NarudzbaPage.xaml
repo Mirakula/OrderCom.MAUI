@@ -35,8 +35,8 @@
                                                      VerticalOptions="Center"
                                                      HorizontalOptions="Start">
                                     <Label Text="{Binding in_brjdok}" FontSize="Small"/>
-                                    <Label Text="{Binding in_datdok}" FontSize="Micro"/>
-                                    <Label Text="{Binding in_datrea}" FontSize="Micro"/>
+                                    <Label Text="{Binding in_datdok, StringFormat='{0:dd.MM.yyyy HHHH:mm:ss}'}" FontSize="Micro"/>
+                                    <Label Text="{Binding in_datrea, StringFormat='{0:dd.MM.yyyy HHHH:mm:ss}'}" FontSize="Micro"/>
                                 </VerticalStackLayout>
                                 <VerticalStackLayout Grid.Column="2"
                                                      Padding="0"
@@ -66,7 +66,7 @@
                                HorizontalOptions="CenterAndExpand"
                                Spacing="2"
                                Padding="1">
-            <Button Text="Nova" WidthRequest="120" Command="{Binding DodajNaruzbenicuCommand}"/>
+            <Button Text="Nova" WidthRequest="120" Command="{Binding DodajNaruzbuCommand}"/>
             <Button Text="Zaključene" WidthRequest="120"/>
             <Button Text="Poslane" WidthRequest="120"/>
         </HorizontalStackLayout>

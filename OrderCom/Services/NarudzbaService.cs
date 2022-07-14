@@ -13,7 +13,7 @@ namespace OrderCom.Services
             Narudzbe = new();
         }
 
-        public async Task<namadat> DajProizovd(int ea_sifmat)
+        public async Task<namadat> DajProizvod(int ea_sifmat)
         {
             Proizvodi = new()
             {
