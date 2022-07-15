@@ -92,6 +92,10 @@
                             <Grid Padding="2"
                               VerticalOptions="Center">
                                 <Frame HasShadow="True">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer CommandParameter="{Binding .}"
+                                                              Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:NarudzbaDetailViewModel}}, Path=GoToStavkeDetailsCommand}"/>
+                                    </Frame.GestureRecognizers>
                                     <Grid ColumnDefinitions="50,*">
                                         <Image Source="item_light.png"
                                            Aspect="AspectFill"

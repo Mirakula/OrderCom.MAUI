@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using OrderCom.Contracts;
 using OrderCom.Models;
+using OrderCom.Views;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 
@@ -72,6 +73,18 @@ namespace OrderCom.ViewModels
             else
                 await Shell.Current.DisplayAlert("Brisanje stavke", "Stavka je već obrisana", "OK");
             IsBusy = false;
+        }
+
+        [RelayCommand]
+        async Task GoToStavkeDetailsAsync(instdat instdat)
+        {
+            if (instdat is null)
+                return;
+
+            await Shell.Current.GoToAsync($"{nameof(StavkaDetailPage)}", true, new Dictionary<string, object>
+            {
+                { "Instdat", instdat}
+            });
         }
 
         [ObservableProperty]

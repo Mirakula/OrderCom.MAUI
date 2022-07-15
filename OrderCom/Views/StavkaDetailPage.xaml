@@ -2,11 +2,71 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OrderCom.Views.StavkaDetailPage"
-             Title="StavkaDetailPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Shell.PresentationMode="ModalAnimated">
+    <Grid ColumnDefinitions="*, *"
+          Padding="20">
+        <ActivityIndicator IsRunning="{Binding IsBusy}"
+                           IsEnabled="{Binding IsBusy}"
+                           Grid.ColumnSpan="2"
+                           HorizontalOptions="CenterAndExpand"
+                           VerticalOptions="CenterAndExpand"/>
+        <Frame Grid.RowSpan="7"
+               Grid.ColumnSpan="2"
+               HasShadow="True">
+            <Grid RowDefinitions="*,*,*,*,*"
+                  VerticalOptions="FillAndExpand">
+                <HorizontalStackLayout Grid.Column="0"
+                                       Grid.Row="0"
+                                       VerticalOptions="CenterAndExpand">
+                    <Label Text="Šifra materijala:" FontSize="18"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Grid.Column="1"
+                                       Grid.Row="0"
+                                       VerticalOptions="CenterAndExpand">
+                </HorizontalStackLayout>
+                    <Label Text="{Binding Instdat.ea_sifmat}"/>
+                <HorizontalStackLayout Grid.Column="0"
+                                       Grid.Row="1"
+                                       VerticalOptions="CenterAndExpand">
+                    <Label Text="Ime materijala:" FontSize="18"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Grid.Column="1"
+                                       Grid.Row="1"
+                                       VerticalOptions="CenterAndExpand">
+                    <Label Text="{Binding Instdat.ea_imemat}"/>
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout Grid.Column="0"
+                                       Grid.Row="2"
+                                       VerticalOptions="CenterAndExpand">
+                    <Label Text="Jedinica mjere: " FontSize="18"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Grid.Column="1"
+                                       Grid.Row="2"
+                                       VerticalOptions="CenterAndExpand">
+                    <Label Text="{Binding Instdat.ea_imemat}"/>
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout Grid.Column="0"
+                                       Grid.Row="3"
+                                       VerticalOptions="CenterAndExpand">
+                    <Label Text="EAN Kod:" FontSize="18"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Grid.Column="1"
+                               Grid.Row="3">
+                    <Label Text="{Binding Instdat.ea_sifean}"/>
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout Grid.Column="0"
+                                       Grid.Row="4"
+                                       VerticalOptions="CenterAndExpand">
+                    <Label Text="Šifra proizvoda" FontSize="18"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Grid.Column="1"
+                                       Grid.Row="4">
+                    <Label Text="{Binding Instdat.ea_sifpro}"/>
+                </HorizontalStackLayout>
+            </Grid>
+        </Frame>
+    </Grid>
 </ContentPage>
