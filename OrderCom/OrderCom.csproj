@@ -52,6 +52,7 @@
 	<ItemGroup>
 	  <None Remove="Resources\AppIcon\COMP5.png" />
 	  <None Remove="Resources\AppIcon\narudzbenica_light.png" />
+	  <None Remove="Resources\Images\delete.png" />
 	  <None Remove="Resources\Images\item_light.png" />
 	  <None Remove="Resources\Images\knjizna_obavijest.png" />
 	  <None Remove="Resources\Images\kupac_light.png" />
@@ -63,6 +64,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="CommunityToolkit.Maui" Version="1.0.0" />
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0-preview4" />
 	  <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
 	  <PackageReference Include="System.Text.Json" Version="6.0.5" />
@@ -90,6 +92,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ProizvodPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\StavkaDetailPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

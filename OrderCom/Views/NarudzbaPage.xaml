@@ -8,56 +8,73 @@
     <Grid ColumnDefinitions="*, *, *"
           ColumnSpacing="0"
           RowDefinitions="*, Auto">
+        <ActivityIndicator Grid.ColumnSpan="3"
+                           Grid.RowSpan="1"
+                           HorizontalOptions="CenterAndExpand"
+                           VerticalOptions="CenterAndExpand"
+                           IsEnabled="{Binding IsBusy}"
+                           IsRunning="{Binding IsBusy}"/>
         <CollectionView BackgroundColor="Transparent"
                         Grid.ColumnSpan="3"
-                        ItemsSource="{Binding Narudzbenice}"
+                        ItemsSource="{Binding Indkdat}"
+                        IsVisible="{Binding IsNotBusy}"
                         SelectionMode="None">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:indkdat">
-                    <Grid Padding="4">
-                        <Frame HeightRequest="50"
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems Mode="Reveal">
+                                <SwipeItem IconImageSource="delete.png"
+                                           Text="Obriši"
+                                           CommandParameter="{Binding .}"
+                                           Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:NarudzbaViewModel}}, Path=BrisiNarudzbuCommand}"/>
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <Grid Padding="4">
+                            <Frame HeightRequest="50"
                                Padding="0"
                                HasShadow="True">
-                            <Frame.GestureRecognizers>
-                                <TapGestureRecognizer CommandParameter="{Binding .}"
-                                                      Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:NarudzbaViewModel}}, Path=GoToDetailsCommand}"/>
-                            </Frame.GestureRecognizers>
-                            <Grid ColumnDefinitions="75,*,*,*">
-                                <Image Grid.Column="0"
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer CommandParameter="{Binding .}"
+                                                          Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:NarudzbaViewModel}}, Path=GoToDetailsCommand}"/>
+                                </Frame.GestureRecognizers>
+                                <Grid ColumnDefinitions="75,*,*,*">
+                                    <Image Grid.Column="0"
                                        Source="narudzbenica_light.png"
                                        Aspect="AspectFill"
                                        WidthRequest="48"
                                        HeightRequest="48"
                                        HorizontalOptions="Start"
                                        Margin="10,0,0,0"/>
-                                <VerticalStackLayout Grid.Column="1"
+                                    <VerticalStackLayout Grid.Column="1"
                                                      Padding="0"
                                                      VerticalOptions="Center"
                                                      HorizontalOptions="Start">
-                                    <Label Text="{Binding in_brjdok}" FontSize="Small"/>
-                                    <Label Text="{Binding in_datdok, StringFormat='{0:dd.MM.yyyy HHHH:mm:ss}'}" FontSize="Micro"/>
-                                    <Label Text="{Binding in_datrea, StringFormat='{0:dd.MM.yyyy HHHH:mm:ss}'}" FontSize="Micro"/>
-                                </VerticalStackLayout>
-                                <VerticalStackLayout Grid.Column="2"
+                                        <Label Text="{Binding in_brjdok}" FontSize="Small"/>
+                                        <Label Text="{Binding in_datdok, StringFormat='{0:dd.MM.yyyy HHHH:mm:ss}'}" FontSize="Micro"/>
+                                        <Label Text="{Binding in_datrea, StringFormat='{0:dd.MM.yyyy HHHH:mm:ss}'}" FontSize="Micro"/>
+                                    </VerticalStackLayout>
+                                    <VerticalStackLayout Grid.Column="2"
                                                      Padding="0"
                                                      VerticalOptions="Center">
-                                    <Image Source="{Binding in_poszak}"
+                                        <Image Source="{Binding in_poszak}"
                                            Aspect="AspectFill"
                                            WidthRequest="32"
                                            HeightRequest="32"
                                            HorizontalOptions="Center"/>
-                                </VerticalStackLayout>
-                                <HorizontalStackLayout Grid.Column="3" 
+                                    </VerticalStackLayout>
+                                    <HorizontalStackLayout Grid.Column="3" 
                                                        HorizontalOptions="Center"
                                                        VerticalOptions="Center"
                                                        Spacing="1">
-                                    <Label Text="{Binding in_vriskl}"/>
-                                    <Label Text="{Binding in_valpla}"/>
-                                </HorizontalStackLayout>
+                                        <Label Text="{Binding in_vriskl}"/>
+                                        <Label Text="{Binding in_valpla}"/>
+                                    </HorizontalStackLayout>
 
-                            </Grid>
-                        </Frame>
-                    </Grid>
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </SwipeView>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

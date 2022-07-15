@@ -261,7 +261,7 @@ namespace OrderCom.Services
                 new instdat
                 {
                     kn_redbrj = 1,
-                    kn_sifmat = 20373,
+                    kn_sifmat = 203737,
                     kn_kolmat = 12.000,
                     kn_cijmat = 4.360,
                     kn_sifpro = " ",

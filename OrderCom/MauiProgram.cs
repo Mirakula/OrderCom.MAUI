@@ -1,4 +1,5 @@
-﻿using OrderCom.Contracts;
+﻿using CommunityToolkit.Maui;
+using OrderCom.Contracts;
 using OrderCom.Services;
 using OrderCom.ViewModels;
 using OrderCom.Views;
@@ -12,6 +13,7 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
+			.UseMauiCommunityToolkit()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

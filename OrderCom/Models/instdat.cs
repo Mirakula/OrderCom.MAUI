@@ -30,8 +30,8 @@ namespace OrderCom.Models
         [Column("kn_rabkup")]
         public double kn_rabkup { get; set; }
 
-        [Ignore]
         // Property koji drzi naziv robe
+        [Ignore]
         public string kn_nazrob { get; set; }
     }
 }
