@@ -1,7 +1,18 @@
-﻿namespace OrderCom.ViewModels
+﻿using CommunityToolkit.Mvvm.Input;
+
+namespace OrderCom.ViewModels
 {
-    public class DokumentViewModel : BaseViewModel
+    public partial class DokumentViewModel : BaseViewModel
     {
-        public string Test { get; set; } = "VM Test";
+        public DokumentViewModel()
+        {
+
+        }
+
+        [RelayCommand]
+        async Task PerformSearchAsync()
+        {
+
+        }
     }
 }

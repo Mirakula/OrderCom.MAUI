@@ -4,33 +4,42 @@
              x:Class="OrderCom.Views.DokumentPage"
              Title="DokumentPage"
              Shell.PresentationMode="ModalAnimated">
-    <Grid ColumnDefinitions="*,*"
-          RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*"
-          Padding="10">
-        <HorizontalStackLayout Grid.Column="0"
-                               Grid.Row="0"
-                               VerticalOptions="Center"
-                               HorizontalOptions="Start">
-            <Label Text="Prodajni program: "/>
-        </HorizontalStackLayout>
-        <HorizontalStackLayout Grid.Column="1"
-                               Grid.Row="0"
-                               VerticalOptions="Center"
-                               HorizontalOptions="Center">
-            <Picker Title="Odaberi nesto">
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Baboon</x:String>
-                        <x:String>Capuchin Monkey</x:String>
-                        <x:String>Blue Monkey</x:String>
-                        <x:String>Squirrel Monkey</x:String>
-                        <x:String>Golden Lion Tamarin</x:String>
-                        <x:String>Howler Monkey</x:String>
-                        <x:String>Japanese Macaque</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
-            </Picker>
-        </HorizontalStackLayout>
+    <Grid Padding="10">
+        <Frame>
+            <Grid ColumnDefinitions="*, 2*"
+                  RowDefinitions="*,*,*,*,*,*,*,*,*,*,*,*">
+                <HorizontalStackLayout Grid.Column="0"
+                                       Grid.Row="0"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Start">
+                    <Label Text="Program: "/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Grid.Column="1"
+                                       Grid.Row="0"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center">
+                    <Picker Title="Odaberi prodajni program" TextColor="Black" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Grid.Column="0"
+                                       Grid.Row="1"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Start">
+                    <Button Text="Kupac: "/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Grid.Column="1"
+                                       Grid.Row="1"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="StartAndExpand">
+                    <SearchBar x:Name="searchBar"
+                               SearchCommand="{Binding PerformSearch}"
+                               SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
+                    <ListView x:Name="searchResults"
+                              ItemsSource="{Binding SearchResults}">
+                        
+                    </ListView>
+                </HorizontalStackLayout>
+            </Grid>
+        </Frame>
     </Grid>
 
 </ContentPage>

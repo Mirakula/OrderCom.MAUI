@@ -44,6 +44,7 @@ namespace OrderCom.Services
                 await db.CreateTableAsync<webserv>();
                 await db.CreateTableAsync<indkdat>();
                 await db.CreateTableAsync<instdat>();
+                await db.CreateTableAsync<dajgrpp>();
             }
             catch (Exception e)
             {
