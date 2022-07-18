@@ -2,19 +2,23 @@
 using CommunityToolkit.Mvvm.Input;
 using OrderCom.Contracts;
 using OrderCom.DTOs;
-using OrderCom.Views;
 
 namespace OrderCom.ViewModels
 {
     public partial class LoginViewModel : BaseViewModel
     {
         private ILoginService _loginService;
-        public LoginViewModel(ILoginService loginService)
+        private IDatabaseService _databaseService;
+        public LoginViewModel(ILoginService loginService, IDatabaseService databaseService)
         {
             _loginService = loginService;
+            _databaseService = databaseService;
+
             Year = DateTime.Now.Year;
+
+            Task.Run(async () => await InitLocalDatabase());
         }
-        
+
         [ObservableProperty]
         int year;
         
@@ -22,6 +26,14 @@ namespace OrderCom.ViewModels
         string ca_sifrad;
         [ObservableProperty]
         string ca_imekrt;
+
+        private async Task InitLocalDatabase()
+        {
+            bool isCreated = _databaseService.IsDbCreated();
+
+            if (!isCreated)
+                await _databaseService.DeployLocalDatabase();
+        }
 
         [RelayCommand]
         async Task LoginAsync()

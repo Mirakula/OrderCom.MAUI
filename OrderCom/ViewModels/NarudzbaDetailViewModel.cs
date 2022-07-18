@@ -81,16 +81,19 @@ namespace OrderCom.ViewModels
             if (instdat is null)
                 return;
 
+            var namadat = Namadat.Where(nama => nama.ea_sifmat == instdat.kn_sifmat).FirstOrDefault();
+
+            if (namadat is null)
+                return;
+
             await Shell.Current.GoToAsync($"{nameof(StavkaDetailPage)}", true, new Dictionary<string, object>
             {
-                { "Instdat", instdat}
+                { "Namadat", namadat}
             });
         }
 
         [ObservableProperty]
         indkdat indkdat;
 
-        //[ObservableProperty]
-        //List<instdat> instdat;
     }
 }

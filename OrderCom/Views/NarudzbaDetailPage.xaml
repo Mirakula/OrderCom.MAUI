@@ -6,7 +6,7 @@
              xmlns:model="clr-namespace:OrderCom.Models"
              Title="Detalji narudzbe">
     <Grid ColumnDefinitions="*,*"
-              RowDefinitions="Auto,*,Auto"
+              RowDefinitions="Auto,*"
               Padding="5"
               RowSpacing="0">
         <Grid Grid.Column="0"
@@ -120,15 +120,5 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </Grid>
-        <HorizontalStackLayout Grid.Column="0"
-                               Grid.Row="2"
-                               Grid.ColumnSpan="2"
-                               VerticalOptions="End"
-                               HorizontalOptions="Center"
-                               Spacing="5"
-                               Margin="0,5,0,0">
-            <Button Text="Izbriši narudžbenicu" BackgroundColor="Red" TextColor="White"/>
-            <Button Text="Uredi narudžbenicu"/>
-        </HorizontalStackLayout>
     </Grid>
 </ContentPage>

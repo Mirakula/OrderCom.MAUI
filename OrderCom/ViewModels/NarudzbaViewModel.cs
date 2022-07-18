@@ -35,8 +35,7 @@ namespace OrderCom.ViewModels
         [RelayCommand]
         async Task DodajNaruzbuAsync()
         {
-            IsBusy = true;
-            await Task.Delay(2000);
+            await Shell.Current.GoToAsync($"{nameof(DokumentPage)}", true);
         }
 
         [RelayCommand]

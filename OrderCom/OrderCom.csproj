@@ -64,9 +64,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="CommunityToolkit.Maui" Version="1.0.0" />
+	  <PackageReference Include="CommunityToolkit.Maui" Version="1.1.0" />
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0-preview4" />
-	  <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+		<PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+		<PackageReference Include="SQLitePCLRaw.core" Version="2.1.0" />
+		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.0" />
+		<PackageReference Include="SQLitePCLRaw.provider.dynamic_cdecl" Version="2.1.0" />
+		<PackageReference Include="SQLitePCLRaw.provider.sqlite3" Version="2.1.0" />
 	  <PackageReference Include="System.Text.Json" Version="6.0.5" />
 	</ItemGroup>
 
@@ -76,6 +80,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Views\DokumentPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\KnjiznaObavijestPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -97,6 +104,12 @@
 	  <MauiXaml Update="Views\StavkaDetailPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0-maccatalyst'">
+	  <PackageReference Include="SQLitePCLRaw.provider.sqlite3.ios_unified">
+	    <Version>1.1.14</Version>
+	  </PackageReference>
 	</ItemGroup>
 
 </Project>

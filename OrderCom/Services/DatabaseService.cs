@@ -9,18 +9,8 @@ namespace OrderCom.Services
         public DatabaseService()
         {
         }
+
         public SQLiteAsyncConnection db { get; set; }
-        public async Task Init()
-        {
-            if (db != null)
-                return;
-
-            var databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "ORDC.db");
-            db = new SQLiteAsyncConnection(databasePath);
-            await DeployLocalDatabase();
-
-        }
-
 
         public async Task<bool> DeleteLocalDatabase()
         {
@@ -39,6 +29,9 @@ namespace OrderCom.Services
 
         public async Task DeployLocalDatabase()
         {
+            var databasePath = Path.Combine(FileSystem.AppDataDirectory, "ORDC.db");
+            db = new SQLiteAsyncConnection(databasePath);
+
             try
             {
                 await db.CreateTableAsync<akcpops>();
@@ -49,10 +42,13 @@ namespace OrderCom.Services
                 await db.CreateTableAsync<dajtipn>();
                 await db.CreateTableAsync<rokplac>();
                 await db.CreateTableAsync<webserv>();
+                await db.CreateTableAsync<indkdat>();
+                await db.CreateTableAsync<instdat>();
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-
+                await Shell.Current.DisplayAlert("Greška, Baza podataka", "Baza podataka se ne može kreirati. Pozovite održavanje !", "OK"!);
+                await Shell.Current.DisplayAlert($"Greška, Baza podataka", $"{e.Message}", "OK"!);
             }
         }
 

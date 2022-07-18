@@ -3,7 +3,7 @@ using OrderCom.Models;
 
 namespace OrderCom.ViewModels
 {
-    [QueryProperty("Instdat", "Instdat")]
+    [QueryProperty("Namadat", "Namadat")]
     public partial class StavkaDetailViewModel : BaseViewModel
     {
         public StavkaDetailViewModel()
@@ -11,20 +11,20 @@ namespace OrderCom.ViewModels
 
         }
 
-        partial void OnInstdatChanged(instdat instdat)
+        partial void OnNamadatChanged(namadat namadat)
         {
-            Task.Run(async () => await LoadPageData(instdat));
+            Task.Run(async () => await LoadPageData(namadat));
         }
 
-        private async Task LoadPageData(instdat instdat)
+        private async Task LoadPageData(namadat namadat)
         {
             IsBusy = true;
 
-            if (instdat is not null)
+            if (namadat is not null)
                 IsBusy = false;
         }
 
         [ObservableProperty]
-        instdat instdat;
+        namadat namadat;
     }
 }

@@ -43,6 +43,7 @@ public static class MauiProgram
 		services.AddSingleton<NarudzbaPage>();
 		services.AddTransient<NarudzbaDetailPage>();
 		services.AddTransient<StavkaDetailPage>();
+		services.AddTransient<DokumentPage>();
     }
 
     static void RegisterViewModels(in IServiceCollection services)
@@ -54,5 +55,6 @@ public static class MauiProgram
 		services.AddSingleton<KnjiznaObavijestViewModel>();
 		services.AddTransient<NarudzbaDetailViewModel>();
 		services.AddTransient<StavkaDetailViewModel>();
+		services.AddTransient<DokumentViewModel>();
 	}
 }
