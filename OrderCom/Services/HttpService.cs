@@ -118,7 +118,7 @@ namespace OrderCom.Services
 
         public async Task<IEnumerable<osnpops>> DajOsnovnePopuste(osnpopsDTO osnpopsDTO)
         {
-            var url = Api.BaseUrl + Api.DajGrupe;
+            var url = Api.BaseUrl + Api.DajOsnovnePopuste;
             var response = new HttpResponseMessage();
             var json = JsonSerializer.Serialize<osnpopsDTO>(osnpopsDTO);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
