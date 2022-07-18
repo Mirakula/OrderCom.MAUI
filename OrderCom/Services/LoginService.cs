@@ -18,7 +18,7 @@ namespace OrderCom.Services
 
         public async Task<Token> LoginAsync(LoginDTO loginData)
         {
-            var url = "http://www.ordercom.truthmath.com/api/auth/login";
+            var url = Api.BaseUrl + Api.Login;
             var response = new HttpResponseMessage();
             var json = JsonSerializer.Serialize<LoginDTO>(loginData);
             StringContent content = new StringContent(json, Encoding.UTF8, "application/json");

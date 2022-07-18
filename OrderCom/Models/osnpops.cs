@@ -3,7 +3,7 @@
 namespace OrderCom.Models
 {
     [Table("dajosnp")]
-    public class dajosnp
+    public class osnpops
     {
         [Column("ba_kupdob")]
         public int ba_kupdob { get; set; }

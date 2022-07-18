@@ -6,8 +6,10 @@ namespace OrderCom.Services
 {
     public class DatabaseService : IDatabaseService
     {
-        public DatabaseService()
+        private IHttpService _httpService;
+        public DatabaseService(IHttpService httpService)
         {
+            _httpService = httpService;
         }
 
         public SQLiteAsyncConnection db { get; set; }
@@ -35,11 +37,12 @@ namespace OrderCom.Services
             try
             {
                 await db.CreateTableAsync<akcpops>();
+                await db.CreateTableAsync<osnpops>();
                 await db.CreateTableAsync<dajfins>();
                 await db.CreateTableAsync<dajkupc>();
                 await db.CreateTableAsync<dajlokc>();
                 await db.CreateTableAsync<dajproi>();
-                await db.CreateTableAsync<dajtipn>();
+                await db.CreateTableAsync<dajtipn>(); 
                 await db.CreateTableAsync<rokplac>();
                 await db.CreateTableAsync<webserv>();
                 await db.CreateTableAsync<indkdat>();
@@ -63,9 +66,15 @@ namespace OrderCom.Services
                 return false;
         }
 
-        public Task<bool> RefreshDatabase()
+        public async Task<bool> RefreshDatabase()
         {
-            throw new System.NotImplementedException();
+            await db.DropTableAsync<akcpops>();
+
+            IEnumerable<akcpops> akcpops = await _httpService.DajAkcijskePopuste();
+
+            await db.InsertAllAsync(akcpops);
+
+            return true;
         }
     }
 }
