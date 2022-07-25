@@ -9,15 +9,14 @@ namespace OrderCom.Contracts
         /// Web metoda koja daje tipove narudzbi po ca_imekrt.
         /// Tipovi narudzbi su prodajni programi.
         /// </summary>
-        /// <param name="ca_imekrt"></param>
+        /// <param name="dajtipnDTO"></param>
         /// <returns></returns>
         Task<IEnumerable<dajtipn>> DajPrograme(dajtipnDTO dajtipnDTO);
 
         /// <summary>
         /// Web etoda koja vraca osnovne popuste po nv_brjtin i ca_imekrt.
         /// </summary>
-        /// <param name="nv_brjtin"></param>
-        /// <param name="ca_imekrt"></param>
+        /// <param name="osnpopsDTO"></param>
         /// <returns></returns>
         Task<IEnumerable<osnpops>> DajOsnovnePopuste(osnpopsDTO osnpopsDTO);
 
@@ -30,8 +29,7 @@ namespace OrderCom.Contracts
         /// <summary>
         /// Web metoda koja daje sve kupce po nv_brjtin i ca_imekrt.
         /// </summary>
-        /// <param name="nv_brjtin"></param>
-        /// <param name="ca_imekrt"></param>
+        /// <param name="dajkupcDTO"></param>
         /// <returns></returns>
         Task<IEnumerable<dajkupc>> DajKupce(dajkupcDTO dajkupcDTO);
 
@@ -39,8 +37,7 @@ namespace OrderCom.Contracts
         /// Web metoda koja vraca stanja kupaca (dug, status duga, dan dugovanja...),
         /// po nv_brjtin i ca_imekrt.
         /// </summary>
-        /// <param name="nv_brjtin"></param>
-        /// <param name="ca_imekrt"></param>
+        /// <param name="dajfinsDTO"></param>
         /// <returns></returns>
         Task<IEnumerable<dajfins>> DajFinansije(dajfinsDTO dajfinsDTO);
 
@@ -48,16 +45,14 @@ namespace OrderCom.Contracts
         /// Web metoda koja vraca lokaciju kupaca i informacije kupca tipa
         /// naziv kupca, adresu, mjesto...
         /// </summary>
-        /// <param name="nv_brjtin"></param>
-        /// <param name="ca_imekrt"></param>
+        /// <param name="dajlokcDTO"></param>
         /// <returns></returns>
         Task<IEnumerable<dajlokc>> DajLokacije(dajlokcDTO dajlokcDTO);
 
         /// <summary>
         /// Web metoda koja vraca rokove placanja .
         /// </summary>
-        /// <param name="nv_brjtin"></param>
-        /// <param name="ca_imekrt"></param>
+        /// <param name="rokplacDTO"></param>
         /// <returns></returns>
         Task<IEnumerable<rokplac>> DajRokovePlacanja(rokplacDTO rokplacDTO);
 
@@ -87,8 +82,17 @@ namespace OrderCom.Contracts
         /// Web metoda koja je zaduzena za brisanje narudzbe i stavki narudzbe iz SQL Baze.
         /// Proslijedi se broj dokumenta brjdok a web servis obrise narudzbu zajedno sa stavkama narudzbe.
         /// </summary>
-        /// <param name="brjdok"></param>
+        /// <param name="brjdokDTO"></param>
         /// <returns></returns>
         Task<int> ObrisiNarudzbu(brjdokDTO brjdokDTO);
+
+        /// <summary>
+        /// Web metoda koja je zaduzena za dobavljanje proizvoda iz SQL Baze.
+        /// Proslijedi se broj dokumenta brjdok a web servis obrise narudzbu zajedno sa stavkama narudzbe.
+        /// </summary>
+        /// <param name="dajproiDTO"></param>
+        /// <returns></returns>
+
+        Task<IEnumerable<namadat>> DajProizvode(dajproiDTO dajproiDTO);
     }
 }

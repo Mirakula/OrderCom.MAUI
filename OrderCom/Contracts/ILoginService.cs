@@ -1,11 +1,11 @@
-﻿using OrderCom.DTOs;
-using OrderCom.Models;
+﻿using OrderCom.Models;
+using OrderCom.Models.DTOs;
 
 namespace OrderCom.Contracts
 {
     public interface ILoginService
     {
-        Task<Token> LoginAsync(LoginDTO loginData);
+        Task LoginAsync(LoginDTO loginData);
         void Logout();
     }
 }

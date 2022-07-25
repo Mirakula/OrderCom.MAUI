@@ -1,6 +1,6 @@
 ﻿using OrderCom.Contracts;
-using OrderCom.DTOs;
 using OrderCom.Models;
+using OrderCom.Models.DTOs;
 using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
@@ -16,7 +16,7 @@ namespace OrderCom.Services
             _httpClient = new();
         }
 
-        public async Task<Token> LoginAsync(LoginDTO loginData)
+        public async Task LoginAsync(LoginDTO loginData)
         {
             var url = Api.BaseUrl + Api.Login;
             var response = new HttpResponseMessage();
@@ -33,21 +33,19 @@ namespace OrderCom.Services
 
             if (response.IsSuccessStatusCode)
             {
-                Token token = new();
-                token = await response.Content.ReadFromJsonAsync<Token>();
+                nakodat nakodat = new();
+                nakodat = await response.Content.ReadFromJsonAsync<nakodat>();
 
-                if (token is not null)
-                    return token;
+                if (nakodat is not null)
+                    await SecureStorage.SetAsync("nakodat", nakodat.ca_imekrt);
                 else
                     await Shell.Current.DisplayAlert("Greška", "Pogrešno korisničko ime ili pasvord !", "OK");
             }
             else
             {
                 await Shell.Current.DisplayAlert("Greška", "Intrena greška servera", "OK");
-                return null;
             }
 
-            return null;
         }
 
         public void Logout()

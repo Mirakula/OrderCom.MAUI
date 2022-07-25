@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using OrderCom.Contracts;
-using OrderCom.DTOs;
+using OrderCom.Models.DTOs;
 
 namespace OrderCom.ViewModels
 {
@@ -43,8 +43,7 @@ namespace OrderCom.ViewModels
             loginData.ca_imekrt = Ca_imekrt;
             loginData.ca_sifrad = Convert.ToInt32(Ca_sifrad);
 
-            var loginResult = await _loginService.LoginAsync(loginData);
-            await SecureStorage.SetAsync("jwt_token", loginResult.JwtToken);
+            await _loginService.LoginAsync(loginData);
 
             await Shell.Current.GoToAsync("//Main");
         }

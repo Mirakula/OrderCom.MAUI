@@ -1,23 +1,32 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using OrderCom.Contracts;
 using OrderCom.Models;
+using OrderCom.Models.DTOs;
 using OrderCom.Views;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 
 namespace OrderCom.ViewModels
 {
     public partial class NarudzbaViewModel : BaseViewModel
     {
         private INarudzbaService _narudzbeniceService;
+        private IDatabaseService _databaseService;
+        private IHttpService _httpService;
         public ObservableCollection<indkdat> Indkdat { get; set; } = new();
 
 
-        public NarudzbaViewModel(INarudzbaService narudzbeniceService)
+        public NarudzbaViewModel(INarudzbaService narudzbeniceService,
+                                 IDatabaseService databaseService,
+                                 IHttpService httpService)
         {
             _narudzbeniceService = narudzbeniceService;
+            _databaseService = databaseService;
 
+            Task.Run(async () => await _databaseService.DeleteLocalDatabase());
+            Task.Run(async () => await _databaseService.DeployLocalDatabase());
+            Task.Run(async () => await OsvjeziBazuPodataka());
             Task.Run(async () => await LoadPageData());
+            _httpService = httpService;
         }
 
         private async Task LoadPageData()
@@ -30,6 +39,15 @@ namespace OrderCom.ViewModels
                 Indkdat.Add(narudzbenica);
             }
             IsBusy = false;
+        }
+
+        private async Task OsvjeziBazuPodataka()
+        {
+            string ca_imekrt = await SecureStorage.GetAsync("nakodat");
+
+            var result = await _httpService.DajPrograme(new dajtipnDTO { ca_imekrt = ca_imekrt });
+            await _databaseService.OsvjeziAkcijskePopuste();
+            //await _databaseService.OsvjeziProizvode();
         }
 
         [RelayCommand]

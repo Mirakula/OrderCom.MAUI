@@ -1,4 +1,4 @@
-﻿namespace OrderCom.DTOs
+﻿namespace OrderCom.Models.DTOs
 {
     public class LoginDTO
     {

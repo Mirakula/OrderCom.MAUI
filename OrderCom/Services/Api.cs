@@ -5,7 +5,7 @@
         /// <summary>
         /// Base Url of web server
         /// </summary>
-        public static string BaseUrl = "http://www.ordercom.truthmath.com/api/";
+        public static string BaseUrl = "http://92.36.228.106:90/api/";
 
         public static string DajOsnovnePopuste = "popusti/DajOsnovnePopuste";
         public static string DajAkcijskePopuste = "Popusti/DajAkcijskePopuste";

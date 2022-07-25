@@ -1,38 +1,33 @@
 ﻿using OrderCom.Contracts;
 using OrderCom.Models;
+using OrderCom.Models.DTOs;
 using SQLite;
 
 namespace OrderCom.Services
 {
-    public class DatabaseService : IDatabaseService
+    public class DatabaseService : IDatabaseService 
     {
         private IHttpService _httpService;
         public DatabaseService(IHttpService httpService)
         {
             _httpService = httpService;
+            var databasePath = Path.Combine(FileSystem.AppDataDirectory, "ORDC.db");
+            db = new SQLiteAsyncConnection(databasePath);
         }
 
         public SQLiteAsyncConnection db { get; set; }
 
-        public async Task<bool> DeleteLocalDatabase()
+        public async Task DeleteLocalDatabase()
         {
-            await db.CloseAsync();
-
             var databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "ORDC.db");
 
-            if (File.Exists(databasePath))
-            {
+            if(File.Exists(databasePath))
                 File.Delete(databasePath);
-                return true;
-            }
-            else
-                return false;
         }
 
         public async Task DeployLocalDatabase()
         {
-            var databasePath = Path.Combine(FileSystem.AppDataDirectory, "ORDC.db");
-            db = new SQLiteAsyncConnection(databasePath);
+
 
             try
             {
@@ -42,12 +37,13 @@ namespace OrderCom.Services
                 await db.CreateTableAsync<dajkupc>();
                 await db.CreateTableAsync<dajlokc>();
                 await db.CreateTableAsync<dajproi>();
-                await db.CreateTableAsync<dajtipn>(); 
+                await db.CreateTableAsync<dajtipn>();
                 await db.CreateTableAsync<rokplac>();
                 await db.CreateTableAsync<webserv>();
                 await db.CreateTableAsync<indkdat>();
                 await db.CreateTableAsync<instdat>();
                 await db.CreateTableAsync<dajgrpp>();
+
             }
             catch (Exception e)
             {
@@ -55,6 +51,8 @@ namespace OrderCom.Services
                 await Shell.Current.DisplayAlert($"Greška, Baza podataka", $"{e.Message}", "OK"!);
             }
         }
+
+
 
         public bool IsDbCreated()
         {
@@ -66,15 +64,43 @@ namespace OrderCom.Services
                 return false;
         }
 
-        public async Task<bool> RefreshDatabase()
+        public async Task<IEnumerable<akcpops>> OsvjeziAkcijskePopuste()
         {
-            await db.DropTableAsync<akcpops>();
+            var result = await _httpService.DajAkcijskePopuste();
+            await db.DeleteAllAsync<akcpops>();
+            await db.InsertAllAsync(result);
+            
+            return result;
+        }
 
-            IEnumerable<akcpops> akcpops = await _httpService.DajAkcijskePopuste();
+        public async Task<IEnumerable<namadat>> OsvjeziProizvode(dajproiDTO dajproiDTO)
+        {
+            var result = await _httpService.DajProizvode(dajproiDTO);
 
-            await db.InsertAllAsync(akcpops);
+            await db.DropTableAsync<namadat>();
+            await db.InsertAllAsync(result);
 
-            return true;
+            return result;
+        }
+
+        public async Task<IEnumerable<dajtipn>> OsvjeziPrograme(dajtipnDTO dajtipnDTO)
+        {
+            var result = await _httpService.DajPrograme(dajtipnDTO);
+
+            await db.DropTableAsync<dajtipn>();
+            await db.InsertAllAsync(result);
+
+            return result;
+        }
+
+        public  async Task<IEnumerable<dajkupc>> OsvjeziKupce(dajkupcDTO dajkupcDTO)
+        {
+            var result = await _httpService.DajKupce(dajkupcDTO);
+
+            await db.DropTableAsync<dajkupc>();
+            await db.InsertAllAsync(result);
+
+            return result;
         }
     }
 }

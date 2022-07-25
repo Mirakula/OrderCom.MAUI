@@ -5,8 +5,8 @@ namespace OrderCom.Models
     [Table("dajproi")]
     public class dajproi
     {
-        [Column("nv_brjtin")]
-        public int nv_brjtin { get; set; }
+        [Column("ea_sifmat")]
+        public int ea_sifmat { get; set; }
         [Column("ab_matgrp")]
         public string ab_matgrp { get; set; }
         [Column("ea_imemat")]
@@ -19,5 +19,9 @@ namespace OrderCom.Models
         public double ea_rucvlp { get; set; }
         [Column("ea_rucmlp")]
         public double ea_rucmlp { get; set; }
+        [Column("nv_brjtin")]
+        public int nv_brjtin { get; set; }
+        [Column("ba_kupdob")]
+        public int ba_kupdob { get; set; }
     }
 }

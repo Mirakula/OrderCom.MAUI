@@ -166,13 +166,13 @@ namespace OrderCom.Services
 
         public async Task<IEnumerable<dajtipn>> DajPrograme(dajtipnDTO dajtipnDTO)
         {
-            var url = Api.BaseUrl + Api.DajPrograme;
+            var url = Api.BaseUrl + Api.DajPrograme + $"?ca_imekrt={dajtipnDTO.ca_imekrt}";
             var response = new HttpResponseMessage();
             var json = JsonSerializer.Serialize<dajtipnDTO>(dajtipnDTO);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             try
             {
-                response = await _httpClient.PostAsync(url, content);
+                response = await _httpClient.GetAsync(url);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -286,6 +286,30 @@ namespace OrderCom.Services
             {
                 await Shell.Current.DisplayAlert("Greška, Akcijski popusti", $"Greška brisanja narudzbe \n {e.Message}", "OK");
                 return -1;
+            }
+        }
+        public async Task<IEnumerable<namadat>> DajProizvode(dajproiDTO dajproiDTO)
+        {
+            var url = Api.BaseUrl + Api.DajProizvode;
+            var response = new HttpResponseMessage();
+            var json = JsonSerializer.Serialize<dajproiDTO>(dajproiDTO);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            try
+            {
+                response = await _httpClient.DeleteAsync(url + $"?brjdok={dajproiDTO.nv_brjtin}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadFromJsonAsync<IEnumerable<namadat>>();
+                    return result;
+                }
+                else
+                    return null;
+            }
+            catch (Exception e)
+            {
+                await Shell.Current.DisplayAlert("Greška, Akcijski popusti", $"Greška brisanja narudzbe \n {e.Message}", "OK");
+                return null;
             }
         }
     }

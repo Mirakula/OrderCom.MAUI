@@ -2,7 +2,7 @@
 
 namespace OrderCom.Models
 {
-    [Table("ba_kupdob")]
+    [Table("dajfins")]
     public class dajfins
     {
         [Column("ba_kupdob")]
